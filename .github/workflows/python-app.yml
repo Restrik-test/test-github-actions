@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04  # Вказуємо явну версію Ubuntu
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout repository
@@ -22,7 +22,14 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install pytest
         pip install -r requirements.txt
+
+    - name: Verify pytest installation
+      run: which pytest
+
+    - name: List files
+      run: ls -R
 
     - name: Install WebDriver dependencies
       run: |
@@ -39,5 +46,4 @@ jobs:
             libxshmfence1
 
     - name: Run tests
-      run: |
-        pytest tests/ --headless --browser=chrome
+      run: python -m pytest tests/ --headless --browser=chrome
