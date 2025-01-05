@@ -1,18 +1,16 @@
 import unittest
 
-from selenium import webdriver
-from selenium.webdriver.ie.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
 from pageobjects.comparison_page import ComparisonPage
 from pageobjects.product_page import ProductPage
+from webdriver_factory import WebDriverFactory
 
 product_names = ['Apple Cinema 30"', 'Samsung SyncMaster 941BW']
 
 
 class CompareTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        factory = WebDriverFactory(browser="chrome", headless=False)
+        self.driver = factory.get_webdriver()
         self.apple_product = ProductPage(self.driver, '42')
         self.samsung_product = ProductPage(self.driver, '33')
 

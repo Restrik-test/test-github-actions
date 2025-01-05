@@ -1,16 +1,14 @@
 import unittest
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
 from helper import generate_random_string_with_symbols
 from pageobjects.product_page import ProductPage
+from webdriver_factory import WebDriverFactory
 
 
 class AddReviewTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        factory = WebDriverFactory(browser="chrome", headless=False)
+        self.driver = factory.get_webdriver()
         self.product_page = ProductPage(self.driver, '42')
         self.product_page.open()
 

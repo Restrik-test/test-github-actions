@@ -2,17 +2,15 @@ import unittest
 from _decimal import Decimal
 from typing import List
 
-from selenium import webdriver
-from selenium.webdriver.ie.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
 from pageobjects.search_page import SearchPage
 from pageobjects.search_page import ProductInfo
+from webdriver_factory import WebDriverFactory
 
 
 class SearchPageTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        factory = WebDriverFactory(browser="chrome", headless=False)
+        self.driver = factory.get_webdriver()
         self.search_page = SearchPage(self.driver)
         self.search_page.open()
 
