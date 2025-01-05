@@ -7,7 +7,7 @@ from webdriver_factory import WebDriverFactory
 
 class ShoppingCartTest(unittest.TestCase):
     def setUp(self) -> None:
-        factory = WebDriverFactory(browser="chrome", headless=False)
+        factory = WebDriverFactory()
         self.driver = factory.get_webdriver()
         self.hp_product = ProductPage(self.driver, '47')
         self.samsung_product = ProductPage(self.driver, '33')

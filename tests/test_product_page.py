@@ -6,7 +6,7 @@ from webdriver_factory import WebDriverFactory
 
 class ProductPageTest(unittest.TestCase):
     def setUp(self) -> None:
-        factory = WebDriverFactory(browser="chrome", headless=False)
+        factory = WebDriverFactory()
         self.driver = factory.get_webdriver()
         self.product_page = ProductPage(self.driver, '42')
         self.product_page.open()

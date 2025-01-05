@@ -25,12 +25,6 @@ jobs:
         pip install pytest
         pip install -r requirements.txt
 
-    - name: Verify pytest installation
-      run: which pytest
-
-    - name: List files
-      run: ls -R
-
     - name: Install WebDriver dependencies
       run: |
         sudo apt-get update
@@ -46,4 +40,7 @@ jobs:
             libxshmfence1
 
     - name: Run tests
-      run: python -m pytest tests/ --headless --browser=chrome
+      env:
+        BROWSER: chrome
+        HEADLESS: "true"
+      run: python -m pytest tests/

@@ -9,7 +9,7 @@ product_names = ['Apple Cinema 30"', 'Samsung SyncMaster 941BW']
 
 class CompareTest(unittest.TestCase):
     def setUp(self) -> None:
-        factory = WebDriverFactory(browser="chrome", headless=False)
+        factory = WebDriverFactory()
         self.driver = factory.get_webdriver()
         self.apple_product = ProductPage(self.driver, '42')
         self.samsung_product = ProductPage(self.driver, '33')

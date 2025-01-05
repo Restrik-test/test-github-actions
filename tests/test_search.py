@@ -9,7 +9,7 @@ from webdriver_factory import WebDriverFactory
 
 class SearchPageTest(unittest.TestCase):
     def setUp(self) -> None:
-        factory = WebDriverFactory(browser="chrome", headless=False)
+        factory = WebDriverFactory()
         self.driver = factory.get_webdriver()
         self.search_page = SearchPage(self.driver)
         self.search_page.open()
