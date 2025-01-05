@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Вказуємо явну версію Ubuntu
 
     steps:
     - name: Checkout repository
@@ -27,8 +27,17 @@ jobs:
     - name: Install WebDriver dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y xvfb libnss3 libxss1 libappindicator1 libindicator7
+        sudo apt-get install -y \
+            xvfb \
+            libnss3 \
+            libxss1 \
+            libappindicator1 \
+            libindicator7 \
+            fonts-liberation \
+            libatk-bridge2.0-0 \
+            libgtk-3-0 \
+            libxshmfence1
 
     - name: Run tests
       run: |
-        pytest tests/
+        pytest tests/ --headless --browser=chrome
